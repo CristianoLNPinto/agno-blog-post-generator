@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agno"
+name = "agno-blog"
 version = "1.0.0"
 description = "AI-powered blog post generator with research and content extraction"
 authors = [
@@ -38,8 +38,8 @@ dev = [
 ]
 
 [project.scripts]
-agno-cli = "agno.cli:main"
-agno-api = "agno.infrastructure.api.main:main"
+agno-cli = "agno_blog.cli:main"
+agno-api = "agno_blog.infrastructure.api.main:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -2,8 +2,8 @@
 
 import pytest
 
-from src.agno.application.blog_generation_service import BlogGenerationService
-from src.agno.domain.models import NewsArticle, SearchResults
+from src.agno_blog.application.blog_generation_service import BlogGenerationService
+from src.agno_blog.domain.models import NewsArticle, SearchResults
 
 
 class TestBlogGenerationService:
