@@ -22,4 +22,4 @@ COPY .env .env
 EXPOSE 8000
 
 # Run the API server
-CMD ["uvicorn", "src.agno.infrastructure.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.agno_blog.infrastructure.api.main:app", "--host", "0.0.0.0", "--port", "8000"]

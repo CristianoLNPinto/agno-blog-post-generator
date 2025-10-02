@@ -13,9 +13,14 @@ source .venv/bin/activate
 GOOGLE_API_KEY=your_actual_api_key_here
 ```
 
-3. **Install dependencies** (if needed)
+3. **Install dependencies**
 ```bash
-pip install -e .
+# Sync all dependencies (recommended)
+make sync
+
+# Or install manually
+uv pip install agno==2.1.0
+uv pip install -e ".[dev]"
 ```
 
 ## Usage
@@ -46,8 +51,11 @@ make docker-run
 
 ```bash
 make help          # Show all available commands
+make sync          # Sync all dependencies (agno framework + local package)
 make run-cli       # Run CLI
 make run-api       # Run API server
+make stop-api      # Stop API server
+make check-api     # Check if API is running
 make test          # Run tests
 make format        # Format code
 make clean         # Clean temporary files
