@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agno-blog"
-version = "1.0.0"
+version = "2.0.0"
 description = "AI-powered blog post generator with research and content extraction"
 authors = [
     {name = "Cristiano Lacerda Nunes Pinto", email = "your.email@example.com"}
