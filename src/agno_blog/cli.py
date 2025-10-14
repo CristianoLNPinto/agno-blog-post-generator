@@ -42,13 +42,15 @@ async def main():
         """Workflow execution function."""
         return await service.generate_blog_post(session_state, topic, **kwargs)
 
-    # Create workflow
+    # Create workflow with persistent session
+    # Use a fixed session_id to persist cache across runs
     workflow = Workflow(
         name="Blog Post Generator",
         description="Advanced blog post generator with research and content creation capabilities",
         db=get_workflow_db(),
         steps=blog_generation_execution,
-        session_state={},
+        session_id="cli_blog_generator",  # Fixed session ID for cache persistence
+        session_state={},  # Initial state for new sessions
     )
 
     # Generate the blog post

@@ -35,6 +35,10 @@ if "opik_instrumented" not in st.session_state:
     instrument_agno_globally()
     st.session_state.opik_instrumented = True
 
+# Initialize workflow once and reuse it
+if "workflow" not in st.session_state:
+    st.session_state.workflow = None
+
 # Custom CSS for better styling
 st.markdown(
     """
@@ -138,14 +142,19 @@ async def generate_blog_post_async(topic: str, progress_container, status_contai
         """Workflow execution function with progress tracking."""
         return await service.generate_blog_post(session_state, topic, **kwargs)
 
-    # Create workflow
-    workflow = Workflow(
-        name="Blog Post Generator",
-        description="Advanced blog post generator with research and content creation capabilities",
-        db=get_workflow_db(),
-        steps=blog_generation_execution,
-        session_state={},
-    )
+    # Reuse workflow instance to maintain session state
+    # Create workflow only if it doesn't exist
+    if st.session_state.workflow is None:
+        st.session_state.workflow = Workflow(
+            name="Blog Post Generator",
+            description="Advanced blog post generator with research and content creation capabilities",
+            db=get_workflow_db(),
+            steps=blog_generation_execution,
+            session_id="streamlit_blog_generator",  # Fixed session ID for cache persistence
+            session_state={},  # Initial state for new sessions
+        )
+    
+    workflow = st.session_state.workflow
 
     # Capture stdout for progress tracking
     progress_capture = ProgressCapture()
