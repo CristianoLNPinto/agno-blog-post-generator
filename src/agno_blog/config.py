@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Optional
 
 from dotenv import load_dotenv
+from pydantic import ConfigDict
 from pydantic_settings import BaseSettings
 
 # Load environment variables
@@ -38,9 +39,10 @@ class Settings(BaseSettings):
     data_dir: Path = project_root / "data"
     static_dir: Path = project_root / "static"
     
-    class Config:
-        env_file = ".env"
-        case_sensitive = False
+    model_config = ConfigDict(
+        env_file=".env",
+        case_sensitive=False
+    )
 
 
 # Global settings instance

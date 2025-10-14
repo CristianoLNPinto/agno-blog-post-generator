@@ -17,7 +17,7 @@ An advanced AI-powered blog post generator that combines web research, content e
 This project follows **Domain-Driven Design (DDD)** principles with a clean architecture:
 
 ```
-src/agno/
+src/agno_blog/
 ├── domain/              # Core business logic
 │   ├── agents/         # AI agent definitions
 │   ├── models/         # Pydantic data models
@@ -44,7 +44,7 @@ src/agno/
 1. **Clone the repository**
 ```bash
 git clone <your-repo-url>
-cd agno
+cd treinamento_agno
 ```
 
 2. **Create virtual environment**
@@ -75,7 +75,7 @@ Generate a blog post from the command line:
 ```bash
 make run-cli
 # or
-python -m src.agno.cli
+python -m src.agno_blog.cli
 ```
 
 #### API Mode
@@ -85,7 +85,7 @@ Start the FastAPI server:
 ```bash
 make run-api
 # or
-uvicorn src.agno.infrastructure.api.main:app --reload
+uvicorn src.agno_blog.infrastructure.api.main:app --reload
 ```
 
 Then access:
@@ -146,8 +146,8 @@ make clean
 ## 📁 Project Structure
 
 ```
-agno/
-├── src/agno/                  # Source code
+treinamento_agno/
+├── src/agno_blog/            # Source code
 │   ├── domain/               # Business logic
 │   ├── application/          # Use cases
 │   ├── infrastructure/       # External interfaces
@@ -176,7 +176,7 @@ Configuration is managed through environment variables in `.env`:
 GOOGLE_API_KEY=your_api_key_here
 ```
 
-Additional settings can be configured in `src/agno/config.py`.
+Additional settings can be configured in `src/agno_blog/config.py`.
 
 ## 📚 How It Works
 

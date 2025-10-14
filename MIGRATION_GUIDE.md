@@ -6,7 +6,7 @@ This document explains the restructuring of the blog post generator from a singl
 
 ### Before (Monolithic)
 ```
-agno/
+treinamento_agno/
 ├── blog_post_generator.py  # Everything in one file
 ├── .env
 └── tmp/
@@ -14,8 +14,8 @@ agno/
 
 ### After (DDD Architecture)
 ```
-agno/
-├── src/agno/
+treinamento_agno/
+├── src/agno_blog/
 │   ├── domain/              # Business logic
 │   │   ├── agents/         # Agent definitions
 │   │   ├── models/         # Data models
@@ -92,7 +92,7 @@ agno/
 
 ### CLI Mode (Same as before)
 ```bash
-python -m src.agno.cli
+python -m src.agno_blog.cli
 ```
 
 ### API Mode (New!)
@@ -101,7 +101,7 @@ python -m src.agno.cli
 make run-api
 
 # Or manually
-uvicorn src.agno.infrastructure.api.main:app --reload
+uvicorn src.agno_blog.infrastructure.api.main:app --reload
 ```
 
 ### Docker Mode (New!)
@@ -112,9 +112,9 @@ make docker-run
 
 ### Programmatic Usage
 ```python
-from agno.application.blog_generation_service import BlogGenerationService
+from agno_blog.application.blog_generation_service import BlogGenerationService
 from agno.workflow.workflow import Workflow
-from agno.infrastructure.db import get_workflow_db
+from agno_blog.infrastructure.db import get_workflow_db
 
 service = BlogGenerationService()
 
@@ -153,7 +153,7 @@ Content-Type: application/json
 
 ## Configuration
 
-All configuration is managed through `src/agno/config.py` and `.env`:
+All configuration is managed through `src/agno_blog/config.py` and `.env`:
 
 ```bash
 # .env
@@ -223,7 +223,7 @@ make clean
 Make sure you're running from the project root and the virtual environment is activated:
 ```bash
 source .venv/bin/activate
-python -m src.agno.cli
+python -m src.agno_blog.cli
 ```
 
 ### API Not Starting

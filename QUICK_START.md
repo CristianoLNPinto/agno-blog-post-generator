@@ -64,7 +64,7 @@ make clean         # Clean temporary files
 ## Project Structure
 
 ```
-src/agno/
+src/agno_blog/
 ├── domain/              # Core business logic
 │   ├── agents/         # AI agents (research, scraper, writer)
 │   └── models/         # Data models
