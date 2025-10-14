@@ -18,6 +18,18 @@ class Settings(BaseSettings):
     # API Keys
     google_api_key: str = os.getenv("GOOGLE_API_KEY", "")
     
+    # Comet ML Configuration
+    comet_api_key: str = os.getenv("COMET_API_KEY", "")
+    comet_project_name: str = os.getenv("COMET_PROJECT_NAME", "agno-blog-post-generator")
+    comet_workspace: str = os.getenv("COMET_WORKSPACE", "")
+    comet_enabled: bool = True  # Enable/disable Comet ML tracking
+    
+    # Opik Configuration (LLM Observability)
+    opik_api_key: str = os.getenv("OPIK_API_KEY", "")
+    opik_project_name: str = os.getenv("OPIK_PROJECT_NAME", "agno-blog-llm-tracing")
+    opik_workspace: str = os.getenv("OPIK_WORKSPACE", "")
+    opik_enabled: bool = True  # Enable/disable Opik LLM tracing
+    
     # Model Configuration
     model_id: str = "gemini-2.0-flash-exp"
     

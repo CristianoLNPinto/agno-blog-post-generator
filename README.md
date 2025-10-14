@@ -8,9 +8,11 @@ An advanced AI-powered blog post generator that combines web research, content e
 - **Content Extraction**: Scrapes and processes articles with smart formatting
 - **Professional Writing**: Generates engaging, SEO-optimized blog posts
 - **Caching System**: Efficient content caching for faster generation
+- **Streamlit UI**: Beautiful web interface with real-time progress tracking
 - **REST API**: FastAPI-based API for easy integration
 - **CLI Interface**: Command-line tool for quick blog generation
 - **Docker Support**: Containerized deployment ready
+- **📊 Observability**: Full experiment tracking with Comet ML integration
 
 ## 🏗️ Architecture
 
@@ -28,7 +30,8 @@ src/agno_blog/
 ├── infrastructure/     # External interfaces
 │   ├── api/           # FastAPI endpoints
 │   ├── db/            # Database connections
-│   └── llm_providers/ # LLM configurations
+│   ├── llm_providers/ # LLM configurations
+│   └── observability/ # Comet ML tracking
 └── config.py          # Configuration management
 ```
 
@@ -64,9 +67,33 @@ pip install -e .
 ```bash
 cp .env.example .env
 # Edit .env and add your GOOGLE_API_KEY
+
+# Optional: Setup Comet ML for observability
+./setup_comet_env.sh
+# Or manually add COMET_API_KEY, COMET_PROJECT_NAME, COMET_WORKSPACE to .env
 ```
 
 ### Usage
+
+#### Streamlit UI Mode (Recommended)
+
+Launch the beautiful web interface with real-time progress tracking:
+
+```bash
+make run-streamlit
+# or
+streamlit run streamlit_app.py
+```
+
+Then open your browser to http://localhost:8501
+
+**Features:**
+- 🎨 Beautiful, modern interface
+- 📊 Real-time progress tracking for each phase
+- 📄 View output in HTML or Markdown
+- 💾 Download blog posts in multiple formats
+- 💡 Example topics for quick testing
+- ⚙️ Configurable cache settings
 
 #### CLI Mode
 
@@ -174,9 +201,79 @@ Configuration is managed through environment variables in `.env`:
 ```bash
 # Google Gemini API Configuration
 GOOGLE_API_KEY=your_api_key_here
+
+# Comet ML Configuration (Optional - for experiment tracking)
+COMET_API_KEY=your_comet_api_key
+COMET_PROJECT_NAME=agno-blog-post-generator
+COMET_WORKSPACE=your_workspace
+
+# Opik Configuration (Optional - for LLM tracing)
+OPIK_API_KEY=your_opik_api_key
+OPIK_PROJECT_NAME=agno-blog-llm-tracing
+OPIK_WORKSPACE=your_workspace
 ```
 
 Additional settings can be configured in `src/agno_blog/config.py`.
+
+### 📊 Observability
+
+The project includes comprehensive observability with two complementary systems:
+
+#### 🔬 Comet ML - Experiment Tracking
+
+Track high-level metrics and experiments:
+- Performance metrics for each phase (search, scraping, writing)
+- Success rates and failure analysis
+- Cache hit rates and optimization insights
+- Complete experiment logs with parameters and outputs
+
+**Quick Setup:**
+```bash
+# Install Comet ML
+uv pip install comet_ml
+
+# Configure credentials
+./setup_comet_env.sh
+
+# Test integration
+python test_comet_integration.py
+```
+
+**Documentation:**
+- [COMET_ML_SETUP.md](COMET_ML_SETUP.md) - Setup guide
+- [OBSERVABILITY.md](OBSERVABILITY.md) - Comprehensive documentation
+
+#### 🔍 Opik - LLM Tracing
+
+Trace every LLM call and agent interaction:
+- Automatic tracing of all Agno agent calls
+- Complete prompt and response logging
+- Token usage and cost tracking
+- Agent reasoning and tool usage visibility
+- Performance monitoring and debugging
+
+**Quick Setup:**
+```bash
+# Install Opik
+uv pip install opik opentelemetry-sdk opentelemetry-exporter-otlp openinference-instrumentation-agno
+
+# Configure in .env (uses same Comet ML credentials)
+OPIK_API_KEY=your_api_key
+OPIK_PROJECT_NAME=agno-blog-llm-tracing
+OPIK_WORKSPACE=your_workspace
+
+# Run app (tracing is automatic!)
+streamlit run streamlit_app.py
+```
+
+**Documentation:**
+- [OPIK_SETUP.md](OPIK_SETUP.md) - Setup guide
+- [OPIK_QUICK_REFERENCE.md](OPIK_QUICK_REFERENCE.md) - Quick reference
+
+**View Results:**
+Visit [Comet ML Dashboard](https://www.comet.com/) to view:
+- Experiment metrics (Comet ML section)
+- LLM traces (Opik/LLM Tracing section)
 
 ## 📚 How It Works
 

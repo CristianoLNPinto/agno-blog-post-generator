@@ -1,4 +1,4 @@
-.PHONY: help install dev-install sync test lint format clean run-cli run-api stop-api check-api docker-build docker-run
+.PHONY: help install dev-install sync test lint format clean run-cli run-api run-streamlit stop-api check-api docker-build docker-run
 
 help:
 	@echo "Available commands:"
@@ -9,6 +9,7 @@ help:
 	@echo "  make lint          - Run linting"
 	@echo "  make format        - Format code"
 	@echo "  make clean         - Clean temporary files"
+	@echo "  make run-streamlit - Run Streamlit web interface (recommended)"
 	@echo "  make run-cli       - Run CLI blog generator"
 	@echo "  make run-api       - Run FastAPI server"
 	@echo "  make stop-api      - Stop the API server"
@@ -49,6 +50,9 @@ clean:
 	rm -rf .ruff_cache
 	rm -rf dist/
 	rm -rf build/
+
+run-streamlit:
+	streamlit run streamlit_app.py
 
 run-cli:
 	python -m src.agno_blog.cli
