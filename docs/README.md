@@ -19,6 +19,7 @@ Welcome to the Agno Blog Generator documentation!
 ### Guides
 - **[Development Guide](guides/DEVELOPMENT.md)** - Contributing and development workflow
 - **[Observability Guide](guides/OBSERVABILITY.md)** - Monitoring and tracking with Comet ML & Opik
+- **[Groq Limitations](guides/GROQ_LIMITATIONS.md)** - Understanding Groq's tool use limitations
 
 ### Project Information
 - **[Main README](../README.md)** - Project overview and quick reference
@@ -116,8 +117,10 @@ Welcome to the Agno Blog Generator documentation!
 ### Environment Variables
 
 ```bash
-# Required
+# LLM Provider (choose one)
+LLM_PROVIDER=gemini  # or "groq"
 GOOGLE_API_KEY=your_gemini_api_key
+GROQ_API_KEY=your_groq_api_key  # if using Groq
 
 # Optional - Observability
 COMET_API_KEY=your_comet_api_key

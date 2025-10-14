@@ -1,6 +1,6 @@
 # 🎨 Agno - AI Blog Post Generator
 
-An advanced AI-powered blog post generator that combines web research, content extraction, and professional writing using Google's Gemini API.
+An advanced AI-powered blog post generator that combines web research, content extraction, and professional writing using multiple LLM providers (Google Gemini, Groq).
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -11,6 +11,7 @@ An advanced AI-powered blog post generator that combines web research, content e
 - 🔍 **Intelligent Web Research**: Automatically finds and evaluates high-quality sources
 - 📄 **Content Extraction**: Scrapes and processes articles with smart formatting
 - ✍️ **Professional Writing**: Generates engaging, SEO-optimized blog posts
+- 🤖 **Multiple LLM Providers**: Support for Google Gemini and Groq (ultra-fast inference)
 - ⚡ **Multi-Level Caching**: Efficient caching at search, scrape, and blog levels
 - 🎨 **Streamlit UI**: Beautiful web interface with real-time progress tracking
 - 🚀 **REST API**: FastAPI with comprehensive Swagger/OpenAPI documentation
@@ -44,7 +45,9 @@ src/agno_blog/
 ### Prerequisites
 
 - Python 3.12+
-- Google Gemini API key ([Get one here](https://makersuite.google.com/app/apikey))
+- LLM Provider API key:
+  - **Google Gemini** ([Get one here](https://makersuite.google.com/app/apikey)), or
+  - **Groq** ([Get one here](https://console.groq.com/keys)) - Ultra-fast inference
 
 ### Installation
 
@@ -249,6 +252,8 @@ Comprehensive documentation is available in the `/docs` directory:
 - **[Architecture Overview](docs/architecture/ARCHITECTURE.md)** - System design and patterns
 - **[Development Guide](docs/guides/DEVELOPMENT.md)** - Contributing and development workflow
 - **[Observability Guide](docs/guides/OBSERVABILITY.md)** - Monitoring and tracking
+- **[Groq Quick Start](GROQ_QUICK_START.md)** - Get started with Groq in 5 minutes
+- **[Smart Model Factory](SMART_MODEL_FACTORY.md)** - How the hybrid provider system works
 
 **Interactive API Documentation:**
 - Swagger UI: http://localhost:8000/docs (when API is running)
@@ -269,7 +274,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - Built with [Agno](https://github.com/agno-ai/agno) framework
-- Powered by Google's Gemini API
+- Powered by Google's Gemini API and Groq
 - Observability by Comet ML and Opik
 - Architecture inspired by Domain-Driven Design principles
 

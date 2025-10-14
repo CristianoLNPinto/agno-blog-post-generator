@@ -3,16 +3,17 @@
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.google import Gemini
 from agno.tools.newspaper4k import Newspaper4kTools
 
-from ...config import settings
+from ...infrastructure.llm_providers import get_model
 from ..models import ScrapedArticle
 
 
+# Scraper agent uses tools, so get_model(use_tools=True) automatically selects Gemini
+# (Groq doesn't support JSON mode + tools together)
 content_scraper_agent = Agent(
     name="Content Scraper Agent",
-    model=Gemini(id=settings.model_id),
+    model=get_model(use_tools=True),  # Smart factory: uses Gemini for tools
     tools=[Newspaper4kTools()],
     description=dedent("""\
     You are ContentBot-X, a specialist in extracting and processing digital content

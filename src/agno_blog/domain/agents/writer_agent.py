@@ -3,14 +3,14 @@
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.google import Gemini
 
 from ...config import settings
+from ...infrastructure.llm_providers import get_model
 
 
 blog_writer_agent = Agent(
     name="Blog Writer Agent",
-    model=Gemini(id=settings.model_id),
+    model=get_model(use_tools=False),  # No tools needed, can use Groq for speed!
     description=dedent("""\
     You are BlogMaster-X, an elite content creator combining journalistic excellence
     with digital marketing expertise. Your strengths include:

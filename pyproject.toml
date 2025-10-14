@@ -39,6 +39,7 @@ dependencies = [
     "opentelemetry-sdk>=1.37.0",
     "opentelemetry-exporter-otlp>=1.37.0",
     "openinference-instrumentation-agno>=0.1.17",
+    "groq>=0.9.0",
 ]
 
 [project.optional-dependencies]

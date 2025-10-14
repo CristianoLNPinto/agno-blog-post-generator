@@ -3,16 +3,17 @@
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.google import Gemini
 from agno.tools.googlesearch import GoogleSearchTools
 
-from ...config import settings
+from ...infrastructure.llm_providers import get_model
 from ..models import SearchResults
 
 
+# Research agent uses tools, so get_model(use_tools=True) automatically selects Gemini
+# (Groq doesn't support JSON mode + tools together)
 research_agent = Agent(
     name="Blog Research Agent",
-    model=Gemini(id=settings.model_id),
+    model=get_model(use_tools=True),  # Smart factory: uses Gemini for tools
     tools=[GoogleSearchTools()],
     description=dedent("""\
     You are BlogResearch-X, an elite research assistant specializing in discovering

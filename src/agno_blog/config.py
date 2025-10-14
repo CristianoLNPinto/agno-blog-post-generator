@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     
     # API Keys
     google_api_key: str = os.getenv("GOOGLE_API_KEY", "")
+    groq_api_key: str = os.getenv("GROQ_API_KEY", "")
     
     # Comet ML Configuration
     comet_api_key: str = os.getenv("COMET_API_KEY", "")
@@ -31,7 +32,9 @@ class Settings(BaseSettings):
     opik_enabled: bool = True  # Enable/disable Opik LLM tracing
     
     # Model Configuration
+    llm_provider: str = os.getenv("LLM_PROVIDER", "gemini")  # Options: "gemini", "groq"
     model_id: str = "gemini-2.0-flash-exp"
+    groq_model_id: str = os.getenv("GROQ_MODEL_ID", "qwen/qwen3-32b")
     
     # Database Configuration
     db_file: str = "tmp/blog_generator.db"

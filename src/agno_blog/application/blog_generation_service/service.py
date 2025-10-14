@@ -8,6 +8,7 @@ from agno.utils.log import logger
 from ...config import settings
 from ...domain.agents import blog_writer_agent, content_scraper_agent, research_agent
 from ...domain.models import ScrapedArticle, SearchResults
+from ...infrastructure.llm_providers import get_model_id
 from ...infrastructure.observability import get_comet_tracker
 from .cache import (
     cache_blog_post,
@@ -178,7 +179,8 @@ class BlogGenerationService:
             "use_search_cache": use_search_cache,
             "use_scrape_cache": use_scrape_cache,
             "use_blog_cache": use_blog_cache,
-            "model_id": settings.model_id,
+            "llm_provider": settings.llm_provider,
+            "model_id": get_model_id(),
         })
 
         print(f"🎨 Generating blog post about: {topic}")
